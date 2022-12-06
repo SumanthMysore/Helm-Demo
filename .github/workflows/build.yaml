@@ -78,7 +78,7 @@ jobs:
 
       - name: Helm Operations 
         run: |
-          helm uninstall $(helm list -aq);
+          helm uninstall $(helm list -aq) 2>/dev/null;
           helm install voteapp .
 
       
