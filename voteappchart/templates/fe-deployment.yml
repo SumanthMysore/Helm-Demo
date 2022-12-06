@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: fe-container
-          image: {{ .Values.images.front-end.repository }}:{{ .Values.images.front-end.tag }}
+          image: {{ .Values.images.frontend.repository }}:{{ .Values.images.frontend.tag }}
           imagePullPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret  

@@ -9,7 +9,7 @@ images:
   pullPolicy: Always
   imagePullSecrets: ghcr-secret
 
-  front-end:
+  frontend:
     repository: ghcr.io/sumanthmysore/voteapp-fe
     tag: latest
 
