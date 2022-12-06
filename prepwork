@@ -1,0 +1,23 @@
+
+docker run -v $(pwd):/home -p 83:80 -p 3000:3000 -it node:16-alpine3.15 sh
+
+cd /home
+rm -rf node_modules/
+npm install --legacy-peer-deps
+
+npm install -g serve
+npx serve build
+npm start
+
+
+
+docker run -v $(pwd):/home -p 85:80 -it golang:1.19.3-alpine3.16 sh
+
+cd /home
+go mod download
+go build -o api
+./api
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/aws/deploy.yaml
+
