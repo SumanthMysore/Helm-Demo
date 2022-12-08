@@ -77,4 +77,4 @@ jobs:
         run: aws eks update-kubeconfig --region ${{ secrets.EKS_CLUSTER_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
       - name: Helm Operations 
-        run: helm upgrade voteapp-release . --install --set imageTag=${{ github.sha }} --set imageTag=${{ github.sha }}
+        run: helm upgrade voteapp-release . --install --set imageTag=${{ github.sha }}
