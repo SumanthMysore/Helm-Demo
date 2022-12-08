@@ -16,4 +16,5 @@ spec:
       targetPort: {{ .targetPort }}
   selector:
     type: {{ .label }}
+---
 {{- end }}

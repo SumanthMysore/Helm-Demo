@@ -30,4 +30,5 @@ spec:
   selector:
     matchLabels:
       type: {{ .label }}
+---
 {{- end }}
