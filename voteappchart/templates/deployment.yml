@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ .containerName }}
-          image: {{ .imageName }}:{{ $.imageTag }}
+          image: {{ .imageName }}:{{ $.Values.imageTag }}
           imagePullPolicy: {{ .pullPolicy }}
           {{- if .env }}
           env:
