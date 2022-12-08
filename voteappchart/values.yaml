@@ -38,6 +38,7 @@ deployments:
       type: db
     containerName: db-container
     podName: db-pod
+    serviceName: db-service
 
 services:
 

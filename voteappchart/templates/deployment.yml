@@ -24,6 +24,9 @@ spec:
       imagePullSecrets:
         - name: {{ .imagePullSecret }}
   replicas: {{ .replicas }}
+  {{- if .serviceName }}
+  serviceName: {{ .serviceName }}
+  {{- end }}
   selector:
     matchLabels:
       type: {{ .label.type }}
