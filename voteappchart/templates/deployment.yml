@@ -4,13 +4,13 @@ kind: {{ .kind }}
 metadata:
   name: {{ $.Release.Name }}-{{ .deploymentName }}
   labels: 
-    type: {{ .label.type }}
+    type: {{ .label }}
 spec:
   template:
     metadata: 
       name: {{ .podName }}
       labels:
-        type: {{ .label.type }}
+        type: {{ .label }}
     spec:
       containers:
         - name: {{ .containerName }}
@@ -29,5 +29,5 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      type: {{ .label.type }}
+      type: {{ .label }}
 {{- end }}

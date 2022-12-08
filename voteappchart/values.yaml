@@ -7,8 +7,7 @@ deployments:
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
-    label:
-      type: fe
+    label: fe
     containerName: fe-container
     podName: fe-pod
 
@@ -19,8 +18,7 @@ deployments:
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
-    label:
-      type: api
+    label: api
     containerName: api-container
     podName: api-pod
     env: 
@@ -34,8 +32,7 @@ deployments:
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
-    label:
-      type: db
+    label: db
     containerName: db-container
     podName: db-pod
     serviceName: db-service
@@ -43,21 +40,18 @@ deployments:
 services:
 
   - serviceName: fe-service
-    label:
-      type: fe
+    label: fe
     type: ClusterIP
     port: 80
     targetPort: 80
 
   - serviceName: api-service
-    label:
-      type: api
+    label: api
     type: ClusterIP
     port: 8080
     targetPort: 8080
   
   - serviceName: db-service
-    label:
-      type: db
+    label: db
     port: 27017
     targetPort: 27017

@@ -4,7 +4,7 @@ kind: Service
 metadata: 
   name: {{ .serviceName }}
   labels:
-    type: {{ .label.type }}
+    type: {{ .label }}
 spec:
   {{- if .type  }}
   type: {{ .type }}
@@ -15,5 +15,5 @@ spec:
     - port: {{ .port }}
       targetPort: {{ .targetPort }}
   selector:
-    type: {{ .label.type }}
+    type: {{ .label }}
 {{- end }}
