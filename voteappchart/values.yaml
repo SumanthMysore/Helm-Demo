@@ -1,9 +1,10 @@
+imageTag: latest
+
 deployments:
 
   - kind: Deployment
     deploymentName: fe-deployment
     imageName: ghcr.io/sumanthmysore/voteapp-fe
-    imageTag: latest
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
@@ -14,7 +15,6 @@ deployments:
   - kind: Deployment
     deploymentName: api-deployment
     imageName: ghcr.io/sumanthmysore/voteapp-be
-    imageTag: latest
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
@@ -28,7 +28,6 @@ deployments:
   - kind: StatefulSet
     deploymentName: db-deployment
     imageName: ghcr.io/sumanthmysore/voteapp-db
-    imageTag: latest
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
