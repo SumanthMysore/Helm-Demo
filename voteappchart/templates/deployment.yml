@@ -1,0 +1,30 @@
+{{- range .Values.deployments }}
+apiVersion: apps/v1
+kind: {{ .kind }}
+metadata:
+  name: {{ $.Release.Name }}-{{ .deploymentName }}
+  labels: 
+    type: {{ .label.type }}
+spec:
+  template:
+    metadata: 
+      name: {{ .podName }}
+      labels:
+        type: {{ .label.type }}
+    spec:
+      containers:
+        - name: {{ .containerName }}
+          image: {{ .imageName }}:{{ .imageTag }}
+          imagePullPolicy: {{ .pullPolicy }}
+          {{- if .env }}
+          env:
+            - name: {{ .env.name }}
+              value: {{ .env.value }}
+          {{- end }}
+      imagePullSecrets:
+        - name: {{ .imagePullSecret }}
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels:
+      type: {{ .label.type }}
+{{- end }}

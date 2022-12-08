@@ -26,8 +26,8 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest;
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }};
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }}
 
   build-api-go:
     runs-on: ubuntu-latest
@@ -50,8 +50,8 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest;
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }};
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }}
 
   deploy-on-eks:
     runs-on: ubuntu-latest
@@ -77,8 +77,4 @@ jobs:
         run: aws eks update-kubeconfig --region ${{ secrets.EKS_CLUSTER_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
       - name: Helm Operations 
-        run: |
-          helm uninstall $(helm list -aq) 2>/dev/null;
-          helm install voteapp .
-
-      
+        run: helm upgrade voteapp-release . --install --set deployments[0].imageTag=${{ github.sha }} --set deployments[1].imageTag=${{ github.sha }}
