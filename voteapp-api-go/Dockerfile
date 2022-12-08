@@ -1,8 +1,20 @@
+FROM golang:1.16-alpine AS builder
+
+WORKDIR /api
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY *.go ./
+
+RUN go build -o /docker-gs-ping
+
+
 FROM alpine:latest
 
-MAINTAINER Jeremy Cook <jeremy.cook@cloudacademy.com>
+WORKDIR /apibuild
 
-COPY api .
+COPY --from=builder /docker-gs-ping /api
 
 EXPOSE 8080
 
