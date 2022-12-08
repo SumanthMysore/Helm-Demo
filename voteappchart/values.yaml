@@ -23,11 +23,12 @@ deployments:
     podName: api-pod
     env: 
       name: MONGO_CONN_STR
-      value: "mongodb://admin:password@mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/langdb"
+      value: "mongodb://admin:password@db-deployment-0.db-service,db-deployment-1.db-service,db-deployment-2.db-service:27017/langdb"
 
   - kind: StatefulSet
     deploymentName: db-deployment
     imageName: ghcr.io/sumanthmysore/voteapp-db
+    imageTag: latest
     pullPolicy: Always
     replicas: 4
     imagePullSecret: ghcr-secret
