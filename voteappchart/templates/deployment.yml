@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: {{ .containerName }}
-          {{- if .tag }}
+          {{- if .imageTag }}
           image: {{ .imageName }}:{{ .imageTag }}
           {{- else }}
           image: {{ .imageName }}:{{ $.Values.imageTag }}
