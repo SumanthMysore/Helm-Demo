@@ -23,7 +23,7 @@ deployments:
     podName: api-pod
     env: 
       name: MONGO_CONN_STR
-      value: "mongodb://admin:password@db-deployment-0.db-service,db-deployment-1.db-service,db-deployment-2.db-service:27017/langdb"
+      value: "mongodb://admin:password@voteapp-release-db-deployment-0.db-service,voteapp-release-db-deployment-1.db-service,voteapp-release-db-deployment-2.db-service:27017/langdb"
 
   - kind: StatefulSet
     deploymentName: db-deployment
